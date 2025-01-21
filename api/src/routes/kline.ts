@@ -3,13 +3,23 @@ import { Router } from "express";
 import { RedisManager } from "../RedisManager";
 
 const pgClient = new Client({
-    user: 'your_user',
+    user: 'amitkumar',
     host: 'localhost',
-    database: 'my_database',
-    password: 'your_password',
-    port: 5432,
+    database: 'exchange-database',
+    password: 'AmGm#@555',
+    port: 5433,
 });
+
 pgClient.connect();
+
+pgClient.connect((err) => {
+    if (err) {
+        console.error('Failed to connect to the database:', err.stack);
+    } else {
+        console.log('Connected to the database');
+    }
+});
+
 
 export const klineRouter = Router();
 

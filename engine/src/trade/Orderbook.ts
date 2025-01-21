@@ -87,8 +87,12 @@ export class Orderbook {
         const fills: Fill[] = [];
         let executedQty = 0;
 
-        for (let i = 0; i < this.asks.length; i++) {
-            if (this.asks[i].price <= order.price && executedQty < order.quantity) {
+        for (let i = 0; i < this.asks.sort.length; i++) {
+            if(executedQty === order.quantity) {
+                break;
+            }
+
+            if (this.asks[i].price <= order.price) {
                 const filledQty = Math.min((order.quantity - executedQty), this.asks[i].quantity);
                 executedQty += filledQty;
                 this.asks[i].filled += filledQty;
@@ -101,12 +105,14 @@ export class Orderbook {
                 });
             }
         }
+
         for (let i = 0; i < this.asks.length; i++) {
             if (this.asks[i].filled === this.asks[i].quantity) {
                 this.asks.splice(i, 1);
                 i--;
             }
         }
+
         return {
             fills,
             executedQty
@@ -116,7 +122,7 @@ export class Orderbook {
     matchAsk(order: Order): {fills: Fill[], executedQty: number} {
         const fills: Fill[] = [];
         let executedQty = 0;
-        
+
         for (let i = 0; i < this.bids.length; i++) {
             if (this.bids[i].price >= order.price && executedQty < order.quantity) {
                 const amountRemaining = Math.min(order.quantity - executedQty, this.bids[i].quantity);
@@ -131,6 +137,7 @@ export class Orderbook {
                 });
             }
         }
+        
         for (let i = 0; i < this.bids.length; i++) {
             if (this.bids[i].filled === this.bids[i].quantity) {
                 this.bids.splice(i, 1);

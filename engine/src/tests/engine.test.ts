@@ -5,10 +5,10 @@ import { CREATE_ORDER } from "../types/fromApi";
 
 vi.mock("../RedisManager", () => ({
     RedisManager: {
-      getInstance: () => ({
-        publishMessage: vi.fn(),
-        sendToApi: vi.fn(),
-        pushMessage: vi.fn()
+        getInstance: () => ({
+                    publishMessage: vi.fn(),
+                    sendToApi: vi.fn(),
+                    pushMessage: vi.fn()
       })
     }
 }));

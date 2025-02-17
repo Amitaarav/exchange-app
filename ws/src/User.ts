@@ -12,7 +12,7 @@ export class User {
         this.ws = ws;
         this.addListeners();
     }
-
+    
     private subscriptions: string[] = [];
 
     public subscribe(subscription: string) {

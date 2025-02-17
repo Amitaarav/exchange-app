@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Ticker } from "../utils/types";
 import { getTickers } from "../utils/httpClient";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export const Markets = () => {
   const [tickers, setTickers] = useState<Ticker[]>();
@@ -18,7 +19,7 @@ export const Markets = () => {
         <div className="flex flex-col w-full rounded-lg bg-baseBackgroundL1 px-5 py-3">
           <table className="w-full table-auto">
             <MarketHeader />
-            {tickers?.map((m) => <MarketRow market={m} />)}
+            {tickers?.map((m) => <MarketRow key={m.symbol} market={m} />)}
           </table>
         </div>
       </div>
@@ -26,7 +27,7 @@ export const Markets = () => {
   );
 };
 
-function MarketRow({ market }: { market: Ticker }) {
+function MarketRow({ market }: { market: Ticker}) {
   const router = useRouter();
   return (
     <tr className="cursor-pointer border-t border-baseBorderLight hover:bg-white/7 w-full" onClick={() => router.push(`/trade/${market.symbol}`)}>
@@ -38,7 +39,7 @@ function MarketRow({ market }: { market: Ticker }) {
               style={{ width: "40px", height: "40px" }}
             >
               <div className="relative">
-                <img
+                <Image
                   alt={market.symbol}
                   src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVvBqZC_Q1TSYObZaMvK0DRFeHZDUtVMh08Q&s"}
                   loading="lazy"
@@ -76,7 +77,7 @@ function MarketRow({ market }: { market: Ticker }) {
         <p className="text-base font-medium tabular-nums text-greenText">
           {Number(market.priceChangePercent)?.toFixed(3)} %
         </p>
-      </td> 
+      </td>
     </tr>
   );
 }

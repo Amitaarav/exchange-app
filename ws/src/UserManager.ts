@@ -4,6 +4,7 @@ import { SubscriptionManager } from "./SubscriptionManager";
 
 export class UserManager {
     private static instance: UserManager;
+    
     private users: Map<string, User> = new Map();
 
     private constructor() {

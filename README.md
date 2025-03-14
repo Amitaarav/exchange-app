@@ -61,12 +61,6 @@ $ npm run dev
 3. Trade data is stored in **MongoDB**, while historical data is managed in **PostgreSQL/TimescaleDB**.
 4. The frontend provides a **real-time trading dashboard** with price charts and trade history.
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue if you have any improvements or feature requests.
-
-## License
-This project is licensed under the **MIT License**.
-
 ---
 📈 **Built for high-speed trading with low-latency execution!** 🚀
 

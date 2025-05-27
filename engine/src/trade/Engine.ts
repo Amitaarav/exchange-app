@@ -19,10 +19,10 @@ export class Engine {
     private balances: Map<string, UserBalance> = new Map();
 
     constructor() {
-        let snapshot = null
+        let snapshot = null;
         try {
             if (process.env.WITH_SNAPSHOT) {
-                snapshot = fs.readFileSync("./snapshot.json");
+                snapshot = fs.readFileSync("./snapshot.json"); // program will be pause until file is completely read
             }
         } catch (e) {
             console.log("No snapshot found");
@@ -363,6 +363,7 @@ export class Engine {
             if ((this.balances.get(userId)?.[quoteAsset]?.available || 0) < Number(quantity) * Number(price)) {
                 throw new Error("Insufficient funds");
             }
+            // price is per unit of base asset or quote asset
             //@ts-ignore
             this.balances.get(userId)[quoteAsset].available = this.balances.get(userId)?.[quoteAsset].available - (Number(quantity) * Number(price));
             

@@ -88,11 +88,12 @@ export class Orderbook {
         let executedQty = 0;
 
         for (let i = 0; i < this.asks.sort.length; i++) {
+            // if order is completely filled then there is no need to check further
             if(executedQty === order.quantity) {
                 break;
             }
 
-            if (this.asks[i].price <= order.price) {
+            if (this.asks[i].price <= order.price){
                 const filledQty = Math.min((order.quantity - executedQty), this.asks[i].quantity);
                 executedQty += filledQty;
                 this.asks[i].filled += filledQty;

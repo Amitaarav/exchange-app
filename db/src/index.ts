@@ -1,14 +1,18 @@
 import { Client } from 'pg';
 import { createClient } from 'redis';  
 import { DbMessage } from './types';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const pgClient = new Client({
-    user: 'your_user',
-    host: 'localhost',
-    database: 'my_database',
-    password: 'your_password',
-    port: 5432,
+    user: process.env.POSTGRES_USER,
+    host: process.env.HOST,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD,
+    port: (process.env.POSTGRES_PORT as unknown as number),
 });
+
 pgClient.connect();
 
 async function main() {

@@ -24,7 +24,7 @@ export class RedisManager {
 
     public sendAndAwait(message: MessageToEngine) {
         return new Promise<MessageFromOrderbook>((resolve) => {
-            const id = this.getRandomClientId();
+            const id = this.getRandomClientId(); // generate random id and subscribe to PubSub
             this.client.subscribe(id, (message) => {
                 this.client.unsubscribe(id);
                 resolve(JSON.parse(message));

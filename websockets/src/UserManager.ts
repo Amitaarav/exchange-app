@@ -37,6 +37,7 @@ export class UserManager {
         return this.users.get(id);
     }
 
+
     private getRandomId() {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }

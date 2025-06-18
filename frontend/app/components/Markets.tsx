@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export const Markets = () => {
-  const [tickers, setTickers] = useState<Ticker[]>();
+  const [tickers, setTickers] = useState<Ticker[]>([]);
 
   useEffect(() => {
     getTickers().then((m) => setTickers(m));
@@ -26,7 +26,7 @@ export const Markets = () => {
     </div>
   );
 };
-
+// q=tbn:ANd9GcTVvBqZC_Q1TSYObZaMvK0DRFeHZDUtVMh08Q&s
 function MarketRow({ market }: { market: Ticker}) {
   const router = useRouter();
   return (
@@ -43,8 +43,8 @@ function MarketRow({ market }: { market: Ticker}) {
                   alt={market.symbol}
                   src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVvBqZC_Q1TSYObZaMvK0DRFeHZDUtVMh08Q&s"}
                   loading="lazy"
-                  width="40"
-                  height="40"
+                  width={40}
+                  height={40}
                   decoding="async"
                   data-nimg="1"
                   className=""
@@ -87,7 +87,7 @@ function MarketHeader() {
       <thead>
         <tr className="">
           <th className="px-2 py-3 text-left text-sm font-normal text-baseTextMedEmphasis">
-            <div className="flex items-center gap-1 cursor-pointer select-none">
+            <div className="flex items-center gap-1 cursor-pointer select-none text-white">
               Name<span className="w-[16px]"></span>
             </div>
           </th>
@@ -111,9 +111,9 @@ function MarketHeader() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="lucide lucide-arrow-down h-4 w-4"
               >
                 <path d="M12 5v14"></path>

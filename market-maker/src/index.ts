@@ -1,10 +1,12 @@
 import axios from "axios";
+import dotenv from "dotenv";
 
-const BASE_URL = "http://localhost:3000";
-const TOTAL_BIDS = 15;
-const TOTAL_ASK = 15;
-const MARKET = "TATA_INR";
-const USER_ID = "5";
+dotenv.config();
+const BASE_URL = process.env.BASE_URL;
+const TOTAL_BIDS = process.env.TOTAL_BIDS as unknown as number ;
+const TOTAL_ASK = process.env.TOTAL_ASK as unknown as number;
+const MARKET = process.env.MARKET;
+const USER_ID = process.env.USER_ID;
 
 async function main() {
     const price = 1000 + Math.random() * 10;

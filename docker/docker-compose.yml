@@ -5,11 +5,11 @@ services:
     image: timescale/timescaledb:latest-pg12
     container_name: timescaledb
     ports:
-      - "5433:5433"
+      - "5433:5432"
     environment:
-      POSTGRES_DB: exchange-database
-      POSTGRES_USER: amitkumar
-      POSTGRES_PASSWORD: AmGm#@555
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - timescale-data:/var/lib/postgresql/data
 
@@ -17,8 +17,9 @@ services:
     image: redis:latest
     container_name: redis
     ports:
-      - "6379:6379"
+      - "6370:6379"
 
 volumes:
   timescale-data: 
     driver: local
+

@@ -1,13 +1,16 @@
 import { Client } from 'pg';
 import { Router } from "express";
 import { RedisManager } from "../RedisManager";
+import dotenv from "dotenv"
+
+dotenv.config();
 
 const pgClient = new Client({
-    user: 'amitkumar',
-    host: 'localhost',
-    database: 'exchange-database',
-    password: 'AmGm#@555',
-    port: 5433,
+    user: process.env.POSTGRES_USER,
+    host: process.env.HOST,
+    database: process.env.POSTGRES_DB,
+    password:   process.env.POSTGRES_PASSWORD,
+    port: (process.env.POSTGRES_PORT as unknown as number),
 });
 
 pgClient.connect();
